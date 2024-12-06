@@ -1,10 +1,13 @@
 import { useEffect } from 'react';
 import { ReactComponent as SnakeSVG } from './static/snake-Light.svg';
+import { ReactComponent as GithubIcon } from './static/github.svg';
+import { ReactComponent as LinkedInIcon } from './static/linkedin.svg';
 import BlurIn from "./components/ui/blur-in";
 import WordPullUp from "./components/ui/word-pull-up";
 import BlurFade from "./components/ui/blur-fade";
 import { motion } from "framer-motion";
 import backgroundImage from './static/地方都市@ArseniXC.jpg';
+import IconCloud from "./components/ui/icon-cloud";
 
 function App() {
   const SectionTitle = ({ children }) => (
@@ -43,6 +46,25 @@ function App() {
     </motion.div>
   );
 
+  const SocialLink = ({ href, icon: Icon, name }) => (
+    <motion.a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="relative group inline-block mx-2"
+      whileHover={{ scale: 1.1 }}
+      transition={{ duration: 0.2 }}
+    >
+      <Icon className="w-8 h-8 fill-current text-gray-600 hover:text-gray-800" />
+      <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 
+        opacity-0 group-hover:opacity-100 transition-opacity duration-200
+        text-sm text-gray-600 whitespace-nowrap bg-white/90 px-2 py-1 rounded">
+        {name}
+      </span>
+    </motion.a>
+  );
+
+
   return (
     <div className="relative z-10 max-w-6xl mx-auto p-5 text-center">
       {/* Background */}
@@ -66,6 +88,18 @@ function App() {
           words="Software Development Engineer"
           className="text-2xl text-gray-600 mt-2.5"
         />
+        <div className="mt-4 flex justify-center items-center">
+          <SocialLink 
+            href="https://github.com/jiangxin0120"
+            icon={GithubIcon}
+            name="GitHub"
+          />
+          <SocialLink 
+            href="https://www.linkedin.com/in/xin-jiang-6b0774286/"
+            icon={LinkedInIcon}
+            name="LinkedIn"
+          />
+        </div>
       </header>
 
       <main>
@@ -110,25 +144,8 @@ function App() {
         <BlurFade delay={0.6}>
           <section className="my-15 p-5 bg-white/90 rounded-xl backdrop-blur-sm">
             <SectionTitle>Skills</SectionTitle>
-            <div className="text-left">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div className="bg-gray-100/90 rounded-lg p-5 backdrop-blur-sm">
-                  <h3 className="text-2xl">Programming Languages</h3>
-                  <ul className="list-none p-0">
-                    <li className="my-2.5 text-lg">JavaScript</li>
-                    <li className="my-2.5 text-lg">Python</li>
-                    <li className="my-2.5 text-lg">Java</li>
-                  </ul>
-                </div>
-                <div className="bg-gray-100/90 rounded-lg p-5 backdrop-blur-sm">
-                  <h3 className="text-2xl">Technologies</h3>
-                  <ul className="list-none p-0">
-                    <li className="my-2.5 text-lg">React</li>
-                    <li className="my-2.5 text-lg">Node.js</li>
-                    <li className="my-2.5 text-lg">Git</li>
-                  </ul>
-                </div>
-              </div>
+            <div className="relative flex size-full max-w-lg mx-auto items-center justify-center">
+              <IconCloud />
             </div>
           </section>
         </BlurFade>
