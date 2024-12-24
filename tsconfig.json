@@ -14,7 +14,25 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "typeRoots": [
+      "./node_modules/@types",
+      "./node_modules/@babel/types/lib"
+    ],
+    "types": [
+      "@babel/core",
+      "@babel/generator",
+      "@babel/template",
+      "@babel/traverse",
+      "estree",
+      "html-minifier-terser",
+      "istanbul-lib-coverage",
+      "istanbul-lib-report",
+      "json-schema",
+      "parse-json",
+      "node"
+    ]
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["node_modules"]
 } 
