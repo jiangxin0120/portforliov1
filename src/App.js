@@ -13,6 +13,7 @@ import dayBackground from './static/地方都市@ArseniXC.jpg';
 import eveningBackground from './static/地方都市_日没@ArseniXC.jpg';
 import nightBackground from './static/地方都市_夜@ArseniXC.jpg';
 import IconCloud from "./components/ui/icon-cloud";
+import { ReactComponent as ArrowIcon } from './static/arrow-right.svg';
 
 function App() {
   const [backgroundImage, setBackgroundImage] = useState(dayBackground);
@@ -59,14 +60,15 @@ function App() {
     </motion.h2>
   );
 
-  const ProjectCard = ({ title, description }) => (
+  const ProjectCard = ({ title, description, onClick, showGithub = false }) => (
     <motion.div 
-      className={`${isDarkTheme ? 'bg-gray-700/90' : 'bg-gray-100/90'} rounded-lg p-5 shadow-md backdrop-blur-sm`}
+      className={`${isDarkTheme ? 'bg-gray-700/90' : 'bg-gray-100/90'} rounded-lg p-5 shadow-md backdrop-blur-sm cursor-pointer`}
       whileHover={{ 
         x: 5,
         scale: 1.01,
         transition: { duration: 0.2 }
       }}
+      onClick={onClick}
     >
       <motion.h3 
         className={`text-2xl transition-all duration-200 ${isDarkTheme ? 'text-gray-100' : 'text-gray-800'}`}
@@ -81,9 +83,15 @@ function App() {
       >
         {title}
       </motion.h3>
-      <p className={isDarkTheme ? 'text-gray-300' : 'text-gray-600'}>
+      <p className={`${isDarkTheme ? 'text-gray-300' : 'text-gray-600'} mb-4`}>
         {description}
       </p>
+      {showGithub && (
+        <div className="flex items-center mt-2 space-x-2">
+          <GithubIcon className={`w-5 h-5 ${isDarkTheme ? 'text-gray-300' : 'text-gray-600'}`} />
+          <ArrowIcon className={`w-4 h-4 ${isDarkTheme ? 'text-gray-300' : 'text-gray-600'}`} />
+        </div>
+      )}
     </motion.div>
   );
 
@@ -173,10 +181,24 @@ function App() {
             <SectionTitle className={isDarkTheme ? 'text-gray-100' : 'text-gray-800'}>
               About Me
             </SectionTitle>
-            <div className="text-left">
-              <p className={isDarkTheme ? 'text-gray-300' : 'text-gray-600'}>
-                Hello! I'm Xin Jiang, a Software Development Engineer passionate about
-                creating efficient and innovative solutions. 
+            <div className="text-left px-4">
+              <p className={`
+                ${isDarkTheme ? 'text-gray-300' : 'text-gray-600'}
+                font-['Poppins']
+                leading-relaxed
+                text-lg
+                tracking-wide
+              `}>
+                Hello! I'm <span className="font-['Roboto_Slab'] font-medium text-xl text-blue-500">Xin Jiang</span>, 
+                <span className="block mt-2">
+                  Motivated Software Engineering student with <span className="font-medium">3+ years</span> of experience 
+                  in programming and cloud technologies. Proficient in <span className="font-medium">Java</span>, <span className="font-medium">Python</span>, 
+                  and software testing, with strong skills in <span className="font-medium">API design</span>, 
+                  <span className="font-medium">systems integration</span>, and <span className="font-medium">agile methodologies</span>.
+                </span>
+                <span className="block mt-2">
+                  Aspiring to contribute to innovative projects while building scalable and secure software solutions.
+                </span>
               </p>
             </div>
           </section>
@@ -198,16 +220,21 @@ function App() {
             <div className="text-left">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 p-5">
                 <ProjectCard 
-                  title="Project 1"
-                  description="Project description goes here"
+                  onClick={() => window.open('https://github.com/jiangxin0120/Inventory-Management-System', '_blank')}
+                  title="Inventory-Management-System"
+                  description="inventory managing system using ASP.NET web API"
+                  showGithub={true}
                 />
                 <ProjectCard 
-                  title="Project 2"
-                  description="Project description goes here"
+                  onClick={() => window.open('https://github.com/kittybean/COMP-308-Group-Project', '_blank')}
+                  title="Health tracking system"
+                  description="health tracking system using React and Node.js"
+                  showGithub={true}
                 />
                 <ProjectCard 
-                  title="Project 3"
-                  description="Project description goes here"
+                  title="OneDrug Web Platform Development"
+                  description="Collaborating on the development of a secure and user-friendly web platform for OneDrug Inc., a medical technology startup specializing in smart point-of-care technologies and genetic profiling."
+                  
                 />
               </div>
             </div>
@@ -219,7 +246,7 @@ function App() {
             <SectionTitle className={isDarkTheme ? 'text-gray-100' : 'text-gray-800'}>
               Skills
             </SectionTitle>
-            <div className="relative flex size-full max-w-lg mx-auto items-center justify-center">
+            <div className="relative flex size-full max-w-lg mx-auto items-center justify-center h-[400px] py-10">
               <IconCloud />
             </div>
           </section>
